@@ -4,7 +4,7 @@ RSpec.describe PokeApi::Pokemon::Ability do
   describe '#is_hidden?' do
     context 'when the ability is not hidden' do
       it 'returns false' do
-        attributes[:is_hidden] = false
+        attributes = { is_hidden: false }
 
         ability = described_class.new(attributes)
 
@@ -13,7 +13,7 @@ RSpec.describe PokeApi::Pokemon::Ability do
     end
     context 'when the ability is hidden' do
       it 'returns true' do
-        attributes[:is_hidden] = true
+        attributes = { is_hidden: true }
 
         ability = described_class.new(attributes)
 
