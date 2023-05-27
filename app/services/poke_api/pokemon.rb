@@ -15,7 +15,7 @@ module PokeApi
     def self.find(id)
       response = PokeApi::Request.get("/pokemon/#{id}")
 
-      new(response.to_json)
+      new(response.serialize)
     end
 
     class Ability
