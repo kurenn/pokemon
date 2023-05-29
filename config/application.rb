@@ -37,6 +37,7 @@ module RailsDockerVscode
     config.to_prepare do
       Devise::SessionsController.layout 'sessions'
       Devise::RegistrationsController.layout 'sessions'
+      Devise::PasswordsController.layout 'sessions'
     end
   end
 end
