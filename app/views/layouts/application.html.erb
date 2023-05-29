@@ -1,19 +1,25 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>RailsDockerVscode</title>
+    <title>Pokemon</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-
   <body>
-    <main class="container mx-auto mt-28 px-5 flex">
-      <%= yield %>
-    </main>
+    <%= yield %>
+    <% if trainer_signed_in? %>
+      <%= link_to 'Sign out', destroy_trainer_session_path, data: { "turbo-method" => :delete } %>
+    <% end %>
+    <div class="fixed top-0 left-0 right-0 flex items-end px-4 py-6 pointer-events-none sm:p-6 sm:items-start">
+      <div class='w-full flex flex-col items-center space-y-4 sm:items-end' id="flash-messages">
+        <% flash.each do |type, message| %>
+          <%= render FlashMessageComponent.new(message: message, type: type) %>
+        <% end %>
+      </div>
+    </div>
   </body>
 </html>

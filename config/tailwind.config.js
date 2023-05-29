@@ -5,6 +5,8 @@ module.exports = {
     "./public/*.html",
     "./app/helpers/**/*.rb",
     "./app/javascript/**/*.js",
+    "./app/components/**/*.rb",
+    "./app/components/**/*.erb",
     "./app/views/**/*.{erb,haml,html,slim}",
   ],
   theme: {
