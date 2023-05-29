@@ -1,4 +1,5 @@
 class PokemonsController < ApplicationController
-  def index
-  end
+  before_action :authenticate_trainer!
+
+  def index; end
 end
