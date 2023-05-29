@@ -5,4 +5,8 @@ class Trainer < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :name, presence: true
+
+  def initials
+    name.split.map { |n| n[0] }.join.upcase
+  end
 end
