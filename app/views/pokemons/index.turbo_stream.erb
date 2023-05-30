@@ -1,0 +1,3 @@
+<%= turbo_stream.append "pokemons-list" do %>
+  <%= render partial: 'pokemon', collection: @pokemons, as: :pokemon %>
+<% end %>

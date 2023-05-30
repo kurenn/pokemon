@@ -3,6 +3,10 @@ class PokemonsController < ApplicationController
 
   def index
     @pokemons = PokeApi::Pokemon.all(offset:)
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
   end
 
   private
