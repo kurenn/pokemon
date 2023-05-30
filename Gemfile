@@ -99,3 +99,4 @@ gem "httparty"
 gem 'devise', '~> 4.8', '>= 4.8.1'
 gem 'view_component'
 gem 'requestjs-rails'
+gem 'pry-rails'
