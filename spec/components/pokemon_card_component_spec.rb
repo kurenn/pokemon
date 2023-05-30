@@ -1,15 +1,33 @@
 # frozen_string_literal: true
 
-require "rails_helper"
+require 'rails_helper'
 
 RSpec.describe PokemonCardComponent, type: :component do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:pokemon_file) { File.read('spec/json_responses/pokemon.json') }
+  let(:pokemon) { PokeApi::Pokemon.new(JSON.parse(pokemon_file, symbolize_names: true)) }
 
-  # it "renders something useful" do
-  #   expect(
-  #     render_inline(described_class.new(attr: "value")) { "Hello, components!" }.css("p").to_html
-  #   ).to include(
-  #     "Hello, components!"
-  #   )
-  # end
+  it 'displays the pokemon number and name capitalized' do
+    render_inline(described_class.new(pokemon))
+
+    expect(page).to have_css('h3', text: '#21 Spearow')
+  end
+
+  it 'displays the pokemon height and weight' do
+    render_inline(described_class.new(pokemon))
+
+    expect(page).to have_content('Height: 30cm')
+    expect(page).to have_content('Weight: 2kg')
+  end
+
+  it 'displays a link to view the pokemon' do
+    render_inline(described_class.new(pokemon))
+
+    expect(page).to have_css('a', text: 'View Pokemon')
+  end
+
+  it 'displays a link to mark the pokemon as favorite' do
+    render_inline(described_class.new(pokemon))
+
+    expect(page).to have_css('a', text: 'Favorite')
+  end
 end
