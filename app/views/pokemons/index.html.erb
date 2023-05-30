@@ -12,7 +12,7 @@
 </ul>
 <div class='flex mt-8 justify-center'>
   <%= button_tag '#',
-      data: { controller: 'load-more-pokemon', action: "load-more-pokemon#fetch" },
+      data: { controller: 'load-more-pokemon', action: "click->load-more-pokemon#fetch" },
       class: 'inline-flex rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600' do %>
     <svg data-load-more-pokemon-target='spinner' class="hidden animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
       <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>

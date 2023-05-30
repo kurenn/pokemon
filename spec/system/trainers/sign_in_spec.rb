@@ -1,10 +1,16 @@
 require 'system_helper'
 
 RSpec.describe 'Sessions', type: :system do
+  let(:spearow_json) { File.read('spec/json_responses/spearow.json') }
+  let(:bulbasaur_json) { File.read('spec/json_responses/bulbasaur.json') }
+  let(:spearow) { PokeApi::Pokemon.new(JSON.parse(spearow_json, symbolize_names: true)) }
+  let(:bulbasaur) { PokeApi::Pokemon.new(JSON.parse(bulbasaur_json, symbolize_names: true)) }
+
   context 'Log in' do
     let(:trainer) { create(:trainer) }
 
     scenario 'Signing in with an email' do
+      allow(PokeApi::Pokemon).to receive(:all).and_return([spearow, bulbasaur])
       visit new_trainer_session_path
 
       expect(page).to have_content('Sign in to your account')
@@ -25,10 +31,11 @@ RSpec.describe 'Sessions', type: :system do
       end
 
       scenario 'Login out from the platform' do
+        allow(PokeApi::Pokemon).to receive(:all).and_return([spearow, bulbasaur])
         visit root_path
-        click_on 'Sign out'
+        click_on 'Log out'
 
-        expect(page).to have_content('Signed out successfully.')
+        expect(page).to have_content('Sign in to your account')
       end
     end
   end

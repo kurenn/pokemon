@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe PokemonCardComponent, type: :component do
-  let(:pokemon_file) { File.read('spec/json_responses/pokemon.json') }
+  let(:pokemon_file) { File.read('spec/json_responses/spearow.json') }
   let(:pokemon) { PokeApi::Pokemon.new(JSON.parse(pokemon_file, symbolize_names: true)) }
 
   it 'displays the pokemon number and name capitalized' do
