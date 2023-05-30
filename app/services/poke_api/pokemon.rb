@@ -8,8 +8,23 @@ module PokeApi
       @name = attributes[:name]
       @height = attributes[:height]
       @weight = attributes[:weight]
+      @types = attributes[:types]
       @abilities = Pokemon::Abilities.new(attributes[:abilities])
       @moves = Pokemon::Moves.new(attributes[:moves])
+    end
+
+    def types
+      @types.map { |type| type[:type][:name] }
+    end
+
+    def img_url
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/#{id}.png"
+    end
+
+    def self.all(offset: 0, limit: 20)
+      response = PokeApi::Request.get('/pokemon/', offset:, limit:)
+
+      PokeApi::PokemonCollection.new(response.serialize).fetch
     end
 
     def self.find(id)

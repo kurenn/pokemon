@@ -8,7 +8,7 @@ module PokeApi
     end
 
     def self.get(uri_path, params = {})
-      response = super(uri_path, params)
+      response = super(uri_path, query: params)
 
       return new(response) if response.success?
 
