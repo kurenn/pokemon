@@ -6,6 +6,8 @@ class Trainer < ApplicationRecord
 
   validates :name, presence: true
 
+  has_many :favorites, dependent: :destroy, inverse_of: :trainer
+
   def initials
     name.split.map { |n| n[0] }.join.upcase
   end

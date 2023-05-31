@@ -5,6 +5,11 @@ require 'rails_helper'
 RSpec.describe PokemonCardComponent, type: :component do
   let(:pokemon_file) { File.read('spec/json_responses/spearow.json') }
   let(:pokemon) { PokeApi::Pokemon.new(JSON.parse(pokemon_file, symbolize_names: true)) }
+  let(:trainer) { create(:trainer) }
+
+  before do
+    allow_any_instance_of(described_class).to receive(:current_trainer).and_return(trainer)
+  end
 
   it 'displays the pokemon number and name capitalized' do
     render_inline(described_class.new(pokemon))
@@ -28,6 +33,6 @@ RSpec.describe PokemonCardComponent, type: :component do
   it 'displays a link to mark the pokemon as favorite' do
     render_inline(described_class.new(pokemon))
 
-    expect(page).to have_css('a', text: 'Favorite')
+    expect(page).to have_css('button', text: 'Favorite')
   end
 end

@@ -4,6 +4,7 @@ RSpec.describe Trainer, type: :model do
   subject { build(:trainer, name: 'Ash') }
 
   it { is_expected.to validate_presence_of(:name) }
+  it { is_expected.to have_many(:favorites).dependent(:destroy).inverse_of(:trainer) }
 
   describe '#initials' do
     context 'when the name is simple' do

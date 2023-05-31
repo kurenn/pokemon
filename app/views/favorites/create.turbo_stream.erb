@@ -1,0 +1,3 @@
+<%= turbo_stream.replace "favorite-pokemon-#{@favorite.pokemon_id}" do %>
+  <%= render partial: 'favorites/remove_form', locals: { pokemon_id: @favorite.pokemon_id, favorite: @favorite } %>
+<% end %>
