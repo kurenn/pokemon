@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root 'pokemons#index'
   resources :pokemons, only: [:index]
+  resources :favorites, only: %i[create destroy]
 end

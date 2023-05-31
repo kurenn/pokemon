@@ -23,7 +23,7 @@ RSpec.describe 'Pokemons List', type: :system do
         expect(page).to have_content('Height: 70cm')
         expect(page).to have_content('Weight: 6kg')
         expect(page).to have_css('a', text: 'View Pokemon')
-        expect(page).to have_css('a', text: 'Favorite')
+        expect(page).to have_css('button', text: 'Favorite')
       end
 
       within('#pokemon-21') do
@@ -31,7 +31,7 @@ RSpec.describe 'Pokemons List', type: :system do
         expect(page).to have_content('Height: 30cm')
         expect(page).to have_content('Weight: 2kg')
         expect(page).to have_css('a', text: 'View Pokemon')
-        expect(page).to have_css('a', text: 'Favorite')
+        expect(page).to have_css('button', text: 'Favorite')
       end
     end
 
@@ -45,7 +45,7 @@ RSpec.describe 'Pokemons List', type: :system do
         expect(page).to have_content('Height: 70cm')
         expect(page).to have_content('Weight: 6kg')
         expect(page).to have_css('a', text: 'View Pokemon')
-        expect(page).to have_css('a', text: 'Favorite')
+        expect(page).to have_css('button', text: 'Favorite')
       end
 
       allow(PokeApi::Pokemon).to receive(:all).with(offset: '20').and_return([spearow])
@@ -56,7 +56,7 @@ RSpec.describe 'Pokemons List', type: :system do
         expect(page).to have_content('Height: 30cm')
         expect(page).to have_content('Weight: 2kg')
         expect(page).to have_css('a', text: 'View Pokemon')
-        expect(page).to have_css('a', text: 'Favorite')
+        expect(page).to have_css('button', text: 'Favorite')
       end
     end
   end
