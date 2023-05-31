@@ -1,7 +1,7 @@
-require "rails_helper"
+require 'rails_helper'
 
 RSpec.describe FlashMessageComponent, type: :component do
-    it 'displays the message' do
+  it 'displays the message' do
     render_inline(described_class.new(message: 'Hello world', type: 'success'))
 
     expect(page).to have_css('p', text: 'Hello world')
