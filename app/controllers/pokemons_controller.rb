@@ -2,7 +2,12 @@ class PokemonsController < ApplicationController
   before_action :authenticate_trainer!
 
   def index
-    @pokemons = PokeApi::Pokemon.all(offset:)
+    @pokemons = if params[:search].present?
+                  PokeApi::Pokemon.search(params[:search])
+                else
+                  PokeApi::Pokemon.all(offset:)
+                end
+
     respond_to do |format|
       format.html
       format.turbo_stream
