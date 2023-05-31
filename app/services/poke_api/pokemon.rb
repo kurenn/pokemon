@@ -17,6 +17,16 @@ module PokeApi
       @types.map { |type| type[:type][:name] }
     end
 
+    def self.search(pokemon_name = '')
+      response = PokeApi::Request.get('/pokemon', limit: 1_281)
+
+      pokemons = response.serialize[:results].select do |pokemon|
+        pokemon[:name].include?(pokemon_name)
+      end
+
+      PokeApi::PokemonCollection.new({ results: pokemons }).fetch
+    end
+
     def img_url
       "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/#{id}.png"
     end
