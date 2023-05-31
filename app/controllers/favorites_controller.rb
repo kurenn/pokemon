@@ -1,6 +1,12 @@
 class FavoritesController < ApplicationController
   before_action :authenticate_trainer!
 
+  def index
+    @pokemons = current_trainer.favorites.map do |favorite|
+      PokeApi::Pokemon.find(favorite.pokemon_id)
+    end
+  end
+
   def create
     @favorite = current_trainer.favorites.find_or_create_by(favorite_params)
 
